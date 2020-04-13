@@ -1,0 +1,41 @@
+Nota importantes de curso:
+
+/*COMPENDIO ANOTACIONES*/
+-Clase objeto - @Entity
+-Cambiar el nombre de la table en BD - @Table(name="nuevoNombreTabla")
+-
+
+/***********************/
+
+1.1.-Como funciona la estrucuta es la siguiente:
+-Identidad-ENTITY   
+ -DAO INTERFAZ CON DECLARACION DE METODOS-Interfaz con metodos de la identidad
+  -DAO IMPLEMENTACION DE METODOS-Implementacion de la interfaz
+   -SERVICE INTERFAZ CON DECLARACION DE METODOS
+    -SERVICE IMPLEMENTCION DE INTERFAZ SERVICE 
+     -Controlador de la identidad
+      -En el controlador, se llama un objeto de la interfaz y con la inyeccion de 
+       dependencias, se pobla al objeto con la clase que impelemnte la interfaz.
+
+   Si hay mas de una clase que implementa la misma interfaz, con la anotacion Qualifier + nombre se indica con 
+   que clase queremos trabajar o con el uso de primary.
+
+1.-Si en JPA no tiene una base de datos establecida, tomara por defecto H2B. Se debe crear entonces, un archivo llamado
+import.sql dentro de resources y se le agregan query mysql para que funcione como una base de datos en memoria y es
+volatil la data siempre que se reinicia el servidor.
+
+Es la base de datos por defecto de Spring.
+
+2.-A las identidades se les agrega 
+@Entity son tablas en la BD, el nombre de la tabla es el mismo que el de la clase pero se puede cambiar con 
+@Table(name="NombreNuevoDeTabla")
+
+3.-Las clases entity deben de extender de serializable ya que muchas veces se trabaja con el objeto completo
+
+4.-En la clase POJO, antes de guardar en BD, se puede implementar un metodo antes de hacer la persistencia en la BD.
+Con la anotacion prepersistency, se ejecuta siempre ese metodo antes de guardar en BD.
+
+5.-Para que se realicen las validaciones con anotaciones que se agregan en el modelo, es importante agregar en el metodo del controlador que recibe 
+el objeto del formulario la anotacion @Valid
+
+6-El BindigResult (parametro que va en el metodo del controlador que recibe al objeto desde el form) va siempre despues del objeto que va a validar.
